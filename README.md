@@ -21,6 +21,7 @@ npx http-server
 
 ## Resources
 
+I used p5.js 1.9.x + ml5 1.2.2 
+
 - [p5.js 2.0](https://beta.p5js.org/)
 - [p5.js Reference](https://p5js.org/reference/)
-<!-- changes to read me -->
