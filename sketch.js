@@ -106,6 +106,7 @@ function draw() {
     }
     
     endShape();
+
     // -------------------------
     // SHEEP HAIR / EARS OVERLAY
     // -------------------------
@@ -116,9 +117,49 @@ function draw() {
     imageMode(CENTER);
 
     // anchor point at the middle of the forehead
+    let anchor = face.keypoints[10];
 
-    let anchor = faces[0].keypoints[10];
-    image(sheephair_img, anchor.x, anchor.y, 250, 150);
+    // ---------------------------------
+    // HEAD ROTATION (using the eyes)
+    // ---------------------------------
+
+    // left and right eye keypoints
+    let leftEye = face.keypoints[33];
+    let rightEye = face.keypoints[263];
+
+    // calculate head tilt angle
+    let angle = atan2(rightEye.y - leftEye.y, rightEye.x - leftEye.x);
+
+    // ---------------------------------
+    // FACE DISTANCE / SCALE
+    // ---------------------------------
+
+    // distance between the eyes
+    let eyeDistance = dist(leftEye.x, leftEye.y, rightEye.x, rightEye.y);
+
+    // scale factor (adjust divisor if needed)
+    let scaleFactor = eyeDistance / 100;
+
+    // ---------------------------------
+    // DRAW ROTATING + SCALING SHEEP HAIR
+    // ---------------------------------
+
+    push();
+
+    // move origin to forehead anchor
+    translate(anchor.x, anchor.y);
+
+    // rotate with head tilt
+    rotate(angle);
+
+    // scale with face distance
+    scale(scaleFactor);
+
+    // draw sheep hair centered
+    image(sheephair_img, 0, 0, 250, 150); // anchor the image using the keypoint with index 10 on the forehead , and sets width and height
+
+    pop();
+
     pop();
   }
 }
