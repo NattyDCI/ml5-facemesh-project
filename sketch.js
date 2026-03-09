@@ -1,22 +1,31 @@
-// Face Mesh Detection - Lips and Nose Tracking
-// https://thecodingtrain.com/tracks/ml5js-beginners-guide/ml5/facemesh
-// https://youtu.be/R5UZsIwPbJA
-let triangles;
+// Face Mesh Detection - Triangulated Face Mapping  
+// https://thecodingtrain.com/tracks/ml5js-beginners-guide/ml5/facemesh  
+// https://youtu.be/R5UZsIwPbJA  
+
 let video;
 let faceMesh;
 let faces = [];
-//this should help fix the video, make it smoother, it was too jittery.
-let offsetX = 0;
-let offsetY = 0;
+let triangles;
+let uvCoords;
+let img;
+let sheephair_img;
+let facey;
+let foreheadtry;
 
 function preload() {
-  // Initialize FaceMesh model with a maximum of one face and flipped video input
-  faceMesh = ml5.faceMesh({ maxFaces: 1, flipped: true });
+  // Load FaceMesh model 
+  faceMesh = ml5.faceMesh({ maxFaces: 1});
+
+  //load the texture image that will be mapped onto the face mesh
+  img = loadImage("sheep_mask.png");
+
+  //ears + hair overlay (NOT mapped)
+  sheephair_img = loadImage("ears_sheep.png");
 }
 
 function mousePressed() {
-  // Log detected face data to the console
-  console.log(faces);
+  console.log("faces:",faces);
+  
 }
 
 function gotFaces(results) {
@@ -24,119 +33,92 @@ function gotFaces(results) {
 }
 
 function setup() {
-  createCanvas(640, 480);
-  video = createCapture(VIDEO, { flipped: true });
+  createCanvas(640, 480, WEBGL);
+
+  video = createCapture(VIDEO);
+  video.size(640,480);
   video.hide();
 
   // Start detecting faces
   faceMesh.detectStart(video, gotFaces);
+
+  // mesh data
   triangles = faceMesh.getTriangles();
-  console.log("triangles",triangles);
+  uvCoords = faceMesh.getUVCoords();
 }
 
 function draw() {
+  
   background(0);
 
+  
+  // align WEBGL coordinates to 2D Screen
+  translate(-width/2, -height/2);
+  
+  // camera feed
+  image(video, 0, 0);
+  
+  
+
   if (faces.length > 0) {
+
     let face = faces[0];
-    let box = face.box;
-    
-    let centerX = width/2;
-    let centerY = width/2;
-    let rawOffsetX = centerX - box.xMin - box.width/2;
-    let rawOffsetY = centerY - box.yMin - box.height/2;
 
-    offsetX = lerp(offsetX, rawOffsetX, 0.5);
-    offsetY = lerp(offsetY, rawOffsetY, 0.5)
+    // -------------------------
+    // DEBUG POINT
+    // -------------------------
 
-    translate(offsetX, offsetY);
-    image(video, 0, 0);
-    stroke(0,0,255);
+    let debugPoint = face.keypoints[19];
+
+    stroke(255,0,0);
+    strokeWeight(4);
     noFill();
-    rect(box.xMin, box.yMin, box.width, box.height);
+    circle(debugPoint.x, debugPoint.y, 30);
+
+    // -------------------------
+    // FACE MESH TEXTURE
+    // -------------------------
+
     
-    // Draw exterior lip contour
-    beginShape();
-    for (let i = 0; i < lipsExterior.length; i++) {
-      let index = lipsExterior[i];
-      let keypoint = face.keypoints[index];
-      stroke(255, 255, 0);
-      strokeWeight(2);
-      noFill();
-      vertex(keypoint.x, keypoint.y);
+    texture(img);
+    textureMode(NORMAL);
+    noStroke();
+    beginShape(TRIANGLES);
+      // Loop through each triangle and fill it with sampled pixel color
+    for (let i = 0; i < triangles.length; i++) {
+      let tri = triangles[i];
+      
+    //Get the indices of the three points that form a triangle
+    let [a, b, c] = tri;
+    let pointA = face.keypoints[a];
+    let pointB = face.keypoints[b];
+    let pointC = face.keypoints[c];
+
+    // Retrieve the corresponding UV coordinates for texture mapping
+    let uvA = uvCoords[a];
+    let uvB = uvCoords[b];
+    let uvC = uvCoords[c];
+
+    // Define the triangle with both position (x, y) and UV texture coordinates
+    vertex(pointA.x, pointA.y, uvA[0], uvA[1]);
+    vertex(pointB.x, pointB.y, uvB[0], uvB[1]);
+    vertex(pointC.x, pointC.y, uvC[0], uvC[1]);
     }
-    endShape(CLOSE);
+    
+    endShape();
+    // -------------------------
+    // SHEEP HAIR / EARS OVERLAY
+    // -------------------------
+    // after drawing video and mesh
+    push();
+    resetMatrix();      // resets WEBGL transformations
+    translate(-width/2, -height/2);  // align top-left
+    imageMode(CENTER);
 
-    // Draw interior lip contour
-    beginShape();
-    for (let i = 0; i < lipsInterior.length; i++) {
-      let index = lipsInterior[i];
-      let keypoint = face.keypoints[index];
-      stroke(255, 0, 255);
-      strokeWeight(2);
-      noFill();
-      vertex(keypoint.x, keypoint.y);
-    }
-    endShape(CLOSE);
+    // anchor point at the middle of the forehead
 
-    // Calculate mouth opening distance
-    let a = face.keypoints[13];
-    let b = face.keypoints[14];
-    let d = dist(a.x, a.y, b.x, b.y);
-
-    // Draw a circle on the nose with size based on mouth opening
-    let nose = face.keypoints[19];
-    fill(0, 255, 0);
-    circle(nose.x, nose.y, d);
+    let anchor = faces[0].keypoints[10];
+    image(sheephair_img, anchor.x, anchor.y, 250, 150);
+    pop();
   }
 }
-
-// Thank you Jack B. Du for these lists!
-
-// Define the exterior lip landmark indices for drawing the outer lip contour
-let lipsExterior = [
-  267,
-  269,
-  270,
-  409,
-  291,
-  375,
-  321,
-  405,
-  314,
-  17,
-  84,
-  181,
-  91,
-  146,
-  61,
-  185,
-  40,
-  39,
-  37,
-  0,
-];
-
-// Define the interior lip landmark indices for drawing the inner lip contour
-let lipsInterior = [
-  13,
-  312,
-  311,
-  310,
-  415,
-  308,
-  324,
-  318,
-  402,
-  317,
-  14,
-  87,
-  178,
-  88,
-  95,
-  78,
-  191,
-  80,
-  81,
-  82,
-];
