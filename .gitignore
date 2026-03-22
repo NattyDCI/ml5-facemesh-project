@@ -33,4 +33,4 @@ Thumbs.db
 *.exe
 
 # Linux
-*.AppImage
+*.AppImage*.zip

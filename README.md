@@ -11,6 +11,26 @@
 
 ---
 
+##The implementation
+I developed this project using p5.js and ml5.js.
+With p5.js, I handle all the visual and interactive aspects, including rendering, interface design, animations, and the use of WEBGL to work with a facial mesh.
+
+For real-time face tracking, I use FaceMesh from ml5.js, which allows me to detect key facial landmarks. Based on this data, I detect when the mouth is open and trigger a time-based interactive logic, generating visual feedback such as messages, a counter, and bubble animations.
+
+I also use a triangulated face mesh with UV coordinates to apply a texture that follows the movement and orientation of the user’s face in real time.
+
+Overall, the project combines computer vision and interactive graphics to create an educational and gamified experience.
+
+##Acerca de la implementación
+He desarrollado este proyecto utilizando p5.js y ml5.js.
+Con p5.js gestiono toda la parte visual e interactiva, incluyendo el renderizado, la interfaz, las animaciones y el uso de WEBGL para trabajar con una malla facial.
+
+Para la detección facial en tiempo real utilizo FaceMesh de ml5.js, que me permite identificar puntos clave del rostro. A partir de estos datos, detecto cuándo la boca está abierta y activo una lógica interactiva basada en tiempo, generando feedback visual como mensajes, contador y animaciones de burbujas.
+
+Además, utilizo una malla facial triangulada con coordenadas UV para aplicar una textura que se adapta al movimiento y orientación de la cara en tiempo real.
+
+En conjunto, combino visión por computador y gráficos interactivos para crear una experiencia educativa y gamificada.
+
 ## How to Work on This Project Locally
 
 You can clone this repository and work on the app locally. Here’s how:
