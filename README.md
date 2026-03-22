@@ -1,6 +1,7 @@
 # 🐑 El Dentista Oveja
 
 **Author / Autora:** Nathalia Carolina Padrón Bavutti  
+**Title / Titulo:** The Sheep Dentist / El dentista Oveja 
 
 ---
 
@@ -9,6 +10,12 @@
 ![Project Preview](./assets/el_dentista_oveja.gif)
 
 ---
+
+## Technology Used
+
+- **ml5.js (FaceMesh)** – for real-time facial feature detection and tracking  
+- **p5.js** – for creative visualizations and interactive sketches  
+- **Electron** – to package the project as a cross-platform desktop application
 
 ## 🌐 Live Page / Página en vivo
 
@@ -128,7 +135,6 @@ Cuando se cierra la boca:
 - Las animaciones se detienen  
 - Las burbujas desaparecen  
 
----
 
 ## 📚 Resources / Recursos
 
