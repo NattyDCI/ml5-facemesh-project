@@ -6,7 +6,7 @@
 
 ## 🎬 Preview
 
-![Project Preview](./assets/preview.gif)
+![Project Preview](./assets/el_dentista_oveja.gif)
 
 ---
 
@@ -59,8 +59,8 @@ La oveja funciona como un **puente entre la fantasía y el aprendizaje**.
 
 ![text](./assets/sketches.jpg)
 
-> Add here your initial drawings or concept sketches of the sheep character.  
-> Añade aquí tus bocetos iniciales del personaje.
+> This was my initial sketch 
+
 
 ---
 
@@ -84,13 +84,15 @@ El usuario debe activar la cámara para comenzar la experiencia.
 - Aparece un filtro facial de oveja con temática de Halloween.  
 
 When the child opens their mouth:  
-Cuando el niño abre la boca:
 
 - Soap-like particles appear  
-- Aparecen partículas similares al jabón  
 - Decorative elements animate (teeth and pumpkins)  
-- Elementos decorativos se animan (dientes y calabazas)  
 - Bubbles come out of the mouth  
+
+Cuando el niño abre la boca:
+
+- Aparecen partículas similares al jabón  
+- Elementos decorativos se animan (dientes y calabazas)  
 - Salen burbujas de la boca  
 
 ---
@@ -98,13 +100,15 @@ Cuando el niño abre la boca:
 ### 4. Feedback System / Sistema de feedback  
 
 Every 5 seconds of correct interaction:  
-Cada 5 segundos de interacción correcta:
 
 - A motivational message appears  
-- Aparece un mensaje motivador  
 - A visual timer fills and turns green  
-- Un temporizador visual se llena y se vuelve verde  
 - A thumbs-up icon reinforces success  
+
+Cada 5 segundos de interacción correcta:
+
+- Aparece un mensaje motivador  
+- Un temporizador visual se llena y se vuelve verde  
 - Un icono de “pulgar arriba” refuerza el logro  
 
 > Designed mainly as **visual feedback**, since children may not read yet.  
@@ -115,11 +119,13 @@ Cada 5 segundos de interacción correcta:
 ### 5. Interaction Stops / Fin de interacción  
 
 When the mouth closes:  
-Cuando se cierra la boca:
 
 - Animations stop  
-- Las animaciones se detienen  
 - Bubbles disappear  
+
+Cuando se cierra la boca:
+
+- Las animaciones se detienen  
 - Las burbujas desaparecen  
 
 ---
