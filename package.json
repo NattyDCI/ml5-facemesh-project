@@ -2,11 +2,10 @@
   "name": "facemesh-app",
   "version": "1.0.0",
   "main": "main.js",
-  "dependencies": {
-    "electron": "^41.0.3"
-  },
+  
   "devDependencies": {
-    "electron-builder": "^26.8.1"
+    "electron-builder": "^26.8.1",
+    "electron": "^41.0.3"
   },
   "scripts": {
     "start": "electron .",
