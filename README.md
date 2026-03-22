@@ -16,7 +16,7 @@
 You can clone this repository and work on the app locally. Here’s how:
 
 1. Clone the repo:
-```bash
+
 ’git clone https://github.com/nattyDCI/facemesh-app.git'
 'cd facemesh-app'
 'npm install'
