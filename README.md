@@ -57,7 +57,7 @@ La oveja funciona como un **puente entre la fantasía y el aprendizaje**.
 
 ## 🖍️ Sketches / Bocetos
 
-![Sketches](./assets/sketches.heic)
+![text](./assets/sketches.jpg)
 
 > Add here your initial drawings or concept sketches of the sheep character.  
 > Añade aquí tus bocetos iniciales del personaje.
