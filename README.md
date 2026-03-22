@@ -11,6 +11,27 @@
 
 ---
 
+## How to Work on This Project Locally
+
+You can clone this repository and work on the app locally. Here’s how:
+
+1. Clone the repo:
+```bash
+’git clone https://github.com/nattyDCI/facemesh-app.git'
+'cd facemesh-app'
+'npm install'
+'npm start'
+
+## Testing the Build
+make sure the build works
+1. 'npm run build'
+2. Check the dist/ folder. Open the generated app for your platform (e.g., .exe on Windows, .dmg on Mac, .AppImage on Linux) and make sure the app runs correctly.
+
+This app has been packaged using Electron to run as a standalone desktop application. To make sure the build works:
+
+Run the build command:
+
+
 ## Technology Used
 
 - **ml5.js (FaceMesh)** – for real-time facial feature detection and tracking  
