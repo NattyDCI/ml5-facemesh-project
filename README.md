@@ -45,12 +45,15 @@ npm start
 
 ## Testing the Build
 make sure the build works
-1. 'npm run build'
-2. Check the dist/ folder. Open the generated app for your platform (e.g., .exe on Windows, .dmg on Mac, .AppImage on Linux) and make sure the app runs correctly.
+
+```bash
 
 This app has been packaged using Electron to run as a standalone desktop application. To make sure the build works:
 
 Run the build command:
+
+1. 'npm run build'
+2. Check the dist/ folder. Open the generated app for your platform (e.g., .exe on Windows, .dmg on Mac, .AppImage on Linux) and make sure the app runs correctly.
 
 
 ## Technology Used
