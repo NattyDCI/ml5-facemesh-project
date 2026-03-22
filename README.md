@@ -11,7 +11,7 @@
 
 ---
 
-##The implementation
+## The implementation
 I developed this project using p5.js and ml5.js.
 With p5.js, I handle all the visual and interactive aspects, including rendering, interface design, animations, and the use of WEBGL to work with a facial mesh.
 
@@ -21,7 +21,7 @@ I also use a triangulated face mesh with UV coordinates to apply a texture that 
 
 Overall, the project combines computer vision and interactive graphics to create an educational and gamified experience.
 
-##Acerca de la implementación
+## Acerca de la implementación
 He desarrollado este proyecto utilizando p5.js y ml5.js.
 Con p5.js gestiono toda la parte visual e interactiva, incluyendo el renderizado, la interfaz, las animaciones y el uso de WEBGL para trabajar con una malla facial.
 
